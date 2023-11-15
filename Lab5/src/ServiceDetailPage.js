@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import 'react-native-gesture-handler';
 import {View, StyleSheet, TouchableHighlight, Text, Image} from 'react-native';
 
 const ServiceDetailPage =()=>{

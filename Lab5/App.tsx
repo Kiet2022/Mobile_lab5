@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
+import 'react-native-gesture-handler';
 import {View, Text, TextInput, Button, TouchableOpacity} from 'react-native';
-import LoginScreen from './src/LoginPage';
-import AddServicePage from './src/AddServicePage';
-import LoginPage from './src/LoginPage';
+
+import HomePage from './src/HomePage';
 const App=()=> {
   return (
     //<LoginScreen/>
-    <LoginPage/>
+    <HomePage/>
     //<AddServicePage/>
 /*     <View>
       <Text>Test</Text>
