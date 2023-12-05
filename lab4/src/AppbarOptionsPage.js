@@ -12,7 +12,7 @@ const AppbarOption_Page = ({navigation}) => {
     }
     return (
         <View>
-            <TouchableOpacity  onPress={() => navigation.navigate('Edit_Page')}>
+            <TouchableOpacity  onPress={() => navigation.navigate('UpdateService')}>
                 <Text >Edit</Text>
             </TouchableOpacity>
             <TouchableOpacity  onPress={handleDelete}>

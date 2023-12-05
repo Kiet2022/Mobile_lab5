@@ -3,10 +3,9 @@ import React, { useEffect, useState } from "react";
 
 import { SafeAreaView, Text, View, ScrollView, FlatList, TouchableOpacity } from 'react-native'
 import { Button, FAB } from "react-native-paper";
-import styles from "./Styles";
+
 import List from './api/agent';
 import Add_Page from './AddPage';
-
 
 const Home_Page = ({navigation}) => {
     const [data, setData] = useState([])
@@ -14,7 +13,7 @@ const Home_Page = ({navigation}) => {
 
     const Item = ({ title }) => (
         <View>
-        <TouchableOpacity  onPress={() => navigation.navigate('Detail_Page')}>
+        <TouchableOpacity  onPress={() => navigation.navigate('DetailService')}>
             <Text >{title.name}</Text>
             <Text >{title.price}</Text>
         </TouchableOpacity>
@@ -27,7 +26,7 @@ const Home_Page = ({navigation}) => {
                 <FAB
                     icon="plus"
                     style={styles.fab}
-                    onPress={() => navigation.navigate('Add_Page')}
+                    onPress={() => navigation.navigate('AddService')}
                 />
             </View>
             <FlatList

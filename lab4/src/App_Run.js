@@ -34,7 +34,7 @@ function HomeScreens() {
                 component={Add_Page}
             />
             <Stack.Screen
-                name='Detail'
+                name='DetailService'
                 component={DetailScreen}
             />
         </Stack.Navigator>
@@ -74,7 +74,7 @@ function DetailScreen(){
                 component={Detail_Page}
             />
             <Stack.Screen
-                name="UpdateService"
+                name="AppbarScreen"
                 component={AppbarOptionScreen}
             />
 

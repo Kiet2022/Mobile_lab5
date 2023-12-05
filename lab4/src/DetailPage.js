@@ -19,7 +19,7 @@ const Detail_Page = ({navigation,_id}) => {
         <Appbar.Header>
             <Appbar.BackAction onPress={_goBack} />
             <Appbar.Content title="Detail" />
-            <Appbar.Action icon="dots-vertical" onPress={() => navigation.navigate('AppbarOption_Page')} />
+            <Appbar.Action icon="dots-vertical" onPress={() => navigation.navigate('AppbarScreen')} />
         </Appbar.Header>
         <View>
             <View style={{flexDirection: 'row'}}> <Text variant="bodyLarge">Service name: </Text><Text variant="labelSmall">dad</Text></View>

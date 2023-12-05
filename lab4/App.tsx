@@ -8,10 +8,11 @@ import {
   SafeAreaView,
 } from 'react-native';
 import Login_Page from './src/LoginPage';
+import App_Run from './src/App_Run';
 
 const App = () => {
   return (
-    <Login_Page/>
+    <App_Run/>
   );
 };
 
