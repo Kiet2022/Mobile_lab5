@@ -10,42 +10,40 @@ import {
     TouchableOpacity,
     KeyboardAvoidingView,
 } from 'react-native';
-import { Authen } from './api/agent';
-import Home_Page from './HomePage';
+import {  Update } from './api/agent';
 
-const Login_Page = () => {
-    const [userEmail, setUserEmail] = useState('');
-    const [userPassword, setUserPassword] = useState('');
+const Edit_Page = () => {
+    const [name, setName] = useState('');
+    const [price, setPrice] = useState('');
     const [errortext, setErrortext] = useState('');
 
     const handleSubmitPress = () => {
         setErrortext('');
-        if (!userEmail) {
-            alert('Please fill Email');
+        if (!name) {
+            alert('Please fill name');
             return;
-        } else if (!userPassword) {
-            alert('Please fill Password');
+        } else if (!price) {
+            alert('Please fill price');
             return;
         } else {
-            Authen();
+            Update(name, price);
         }
-        navigation.navigate('Home_Page')
+
+
     }
 
     return (
 
         <View>
-            <View style={{flex: 1}}><Text>Kami Login</Text></View>
             <View style={{flex:2}}>
                 <KeyboardAvoidingView enabled>
                     <View style={styles.SectionStyle}>
                         <TextInput
                             style={styles.inputStyle}
-                            onChangeText={email =>
-                                setUserEmail(email)
+                            onChangeText={name =>
+                                setName(name)
                             }
-                            placeholder="Enter Email"
-                            keyboardType="email-address"
+                            placeholder="Enter service name"
                             onSubmitEditing={() =>
                                 passwordInputRef.current &&
                                 passwordInputRef.current.focus()
@@ -55,11 +53,10 @@ const Login_Page = () => {
                     <View style={styles.SectionStyle}>
                         <TextInput
                             style={styles.inputStyle}
-                            onChangeText={(pass) =>
-                                setUserPassword(pass)
+                            onChangeText={(price) =>
+                                setPrice(price)
                             }
-                            placeholder="Enter Password"
-                            secureTextEntry={true}
+                            placeholder="Enter price"
                         />
                     </View>
                     {errortext != '' ? (
@@ -71,19 +68,14 @@ const Login_Page = () => {
                         style={styles.buttonStyle}
                         activeOpacity={0.5}
                         onPress={handleSubmitPress}>
-                        <Text style={styles.buttonTextStyle}>LOGIN</Text>
+                        <Text style={styles.buttonTextStyle}>ADD</Text>
                     </TouchableOpacity>
-                    <Text
-                        style={styles.registerTextStyle}
-                        onPress={() => navigation.navigate('RegisterScreen')}>
-                        New Here ? Register
-                    </Text>
                 </KeyboardAvoidingView>
             </View>
         </View>
     );
 };
-export default Login_Page;
+export default Edit_Page;
 
 const styles = StyleSheet.create({
     mainBody: {
