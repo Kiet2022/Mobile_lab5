@@ -5,9 +5,9 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import 'react-native-gesture-handler';
 // import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Login_Page from './LoginPage';
-import Add_Page from './AddPage';
-import Detail_Page from './DetailPage';
-import Edit_Page from './EditPage';
+import AddSer_Page from './AddPage';
+import DetailSer_Page from './DetailPage';
+import EditSer_Page from './EditPage';
 import Home_Page from './HomePage';
 import AppbarOption_Page from './AppbarOptionsPage';
 
@@ -31,7 +31,7 @@ function HomeScreens() {
             />
             <Stack.Screen
                 name='AddService'
-                component={Add_Page}
+                component={AddSer_Page}
             />
             <Stack.Screen
                 name='DetailService'
@@ -55,7 +55,7 @@ function AppbarOptionScreen(){
             />
             <Stack.Screen
                 name="UpdateService"
-                component={Edit_Page}
+                component={EditSer_Page}
             />
 
         </Stack.Navigator>
@@ -71,7 +71,7 @@ function DetailScreen(){
         >
             <Stack.Screen
                 name='Detail'
-                component={Detail_Page}
+                component={DetailSer_Page}
             />
             <Stack.Screen
                 name="AppbarScreen"

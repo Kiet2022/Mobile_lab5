@@ -1,37 +1,70 @@
 import React, { useState } from 'react';
 import {
     StyleSheet,
-    TextInput,
-    View,
-    ScrollView,
-    Image,
-    Keyboard,
-    TouchableOpacity,
-    KeyboardAvoidingView,
+    View
 } from 'react-native';
 import { Text, Appbar } from 'react-native-paper';
-import { Detail, Delete } from './api/agent';
-import AppbarOption_Page from './AppbarOptionsPage';
+import { useRoute } from "@react-navigation/native";
 
-const Detail_Page = ({navigation,_id}) => {
+const DetailSer_Page = ({navigation}) => {
+    const route = useRoute();
+
+    const [data, setData] = useState([]);
+    const { _id } = route.params;
+
+
+    const fetchData = async () => {
+        const value = await AsyncStorage.getItem('token');
+        console.log(value)
+        await fetch(`https://kami-backend-5rs0.onrender.com/services/${_id}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${value}`,
+                'Content-Type': 'application/json'
+            },
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then((d) => {
+                setData(d)
+                console.log("d: ", d)
+                setIsLoading(false)
+                d.map((item) => {
+                    console.log(item);
+                })
+            })
+            .catch((error) => {
+                console.error('Error fetching data:', error);
+                setIsLoading(false)
+            });
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+    
     return (
         <View>
         <Appbar.Header>
             <Appbar.BackAction onPress={_goBack} />
             <Appbar.Content title="Detail" />
-            <Appbar.Action icon="dots-vertical" onPress={() => navigation.navigate('AppbarScreen')} />
+            <Appbar.Action icon="dots-vertical" onPress={() => navigation.navigate('AppbarScreen', { _id: title._id })} />
         </Appbar.Header>
         <View>
-            <View style={{flexDirection: 'row'}}> <Text variant="bodyLarge">Service name: </Text><Text variant="labelSmall">dad</Text></View>
-            <View style={{flexDirection: 'row'}}> <Text variant="bodyLarge">Price: </Text><Text variant="labelSmall">dad</Text></View>
-            <View style={{flexDirection: 'row'}}> <Text variant="bodyLarge">Creator: </Text><Text variant="labelSmall">dad</Text></View>
-            <View style={{flexDirection: 'row'}}> <Text variant="bodyLarge">Created: </Text><Text variant="labelSmall">dad</Text></View>
-            <View style={{flexDirection: 'row'}}> <Text variant="bodyLarge">Updated:</Text><Text variant="labelSmall">dad</Text></View>
+            <View style={{flexDirection: 'row'}}> <Text variant="bodyLarge">Service name: </Text><Text variant="labelSmall">{data.name}</Text></View>
+            <View style={{flexDirection: 'row'}}> <Text variant="bodyLarge">Price: </Text><Text variant="labelSmall">{data.price}</Text></View>
+            {/*<View style={{flexDirection: 'row'}}> <Text variant="bodyLarge">Creator: </Text><Text variant="labelSmall">{data.map}</Text></View>*/}
+            <View style={{flexDirection: 'row'}}> <Text variant="bodyLarge">Created: </Text><Text variant="labelSmall">{data.createdAt}</Text></View>
+            <View style={{flexDirection: 'row'}}> <Text variant="bodyLarge">Updated:</Text><Text variant="labelSmall">{data.updatedAt}</Text></View>
         </View>
         </View>
     );
 };
-export default Detail_Page;
+export default DetailSer_Page;
 
 const styles = StyleSheet.create({
     mainBody: {

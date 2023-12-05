@@ -4,36 +4,45 @@ import {
     TextInput,
     View,
     Text,
-    ScrollView,
-    Image,
-    Keyboard,
     TouchableOpacity,
     KeyboardAvoidingView,
 } from 'react-native';
-import { Authen } from './api/agent';
-import Home_Page from './HomePage';
+import AsyncStorage from 'npm i @react-native-async-storage/async-storage';
 
 const Login_Page = () => {
     const [userEmail, setUserEmail] = useState('');
     const [userPassword, setUserPassword] = useState('');
     const [errortext, setErrortext] = useState('');
 
-    const handleSubmitPress = () => {
+    const handleSubmitPress = async () => {
         setErrortext('');
-        if (!userEmail) {
-            alert('Please fill Email');
+        if (!name) {
+            alert('Please fill name');
             return;
-        } else if (!userPassword) {
-            alert('Please fill Password');
+        } else if (!price) {
+            alert('Please fill price');
             return;
         } else {
-            Authen();
+        await fetch('https://kami-backend-5rs0.onrender.com/auth', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                phone: '0373007856',
+                password: '123'
+            })}).then(response => response.json())
+            .then(async data => {
+                console.log(data);
+                await AsyncStorage.setItem('token',data.token);
+                await navigation.navigate('Service');
+            }
+            ).catch(error => console.error(error));
         }
-        navigation.navigate('Home_Page')
     }
 
     return (
-
         <View>
             <View style={{flex: 1}}><Text>Kami Login</Text></View>
             <View style={{flex:2}}>

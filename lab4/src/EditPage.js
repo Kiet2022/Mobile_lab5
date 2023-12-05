@@ -4,20 +4,21 @@ import {
     TextInput,
     View,
     Text,
-    ScrollView,
-    Image,
-    Keyboard,
     TouchableOpacity,
     KeyboardAvoidingView,
 } from 'react-native';
-import {  Update } from './api/agent';
 
-const Edit_Page = () => {
+const EditSer_Page = () => {
     const [name, setName] = useState('');
     const [price, setPrice] = useState('');
     const [errortext, setErrortext] = useState('');
 
-    const handleSubmitPress = () => {
+
+    const route = useRoute();
+    const { _id } = route.params;
+
+
+    const handleSubmitPress = async () => {
         setErrortext('');
         if (!name) {
             alert('Please fill name');
@@ -26,10 +27,36 @@ const Edit_Page = () => {
             alert('Please fill price');
             return;
         } else {
-            Update(name, price);
+            const value = await AsyncStorage.getItem('token');
+            await fetch(`https://kami-backend-5rs0.onrender.com/services/${_id}`, {
+                method: 'PUT',
+                headers: {
+                    'Authorization': `Bearer ${value}`,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    _id: _id,
+                    name: name,
+                    price: price,
+                }),
+            })
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    Alert.alert('Update Successfully!!!')
+                })
+                .then((d) => {
+                    setData(d)
+                    console.log("c: ", d)
+                    d.map((item) => {
+                        console.log(item);
+                    })
+                })
+                .catch((error) => {
+                    console.error('Error fetching data:', error);
+                });
         }
-
-
     }
 
     return (
@@ -75,7 +102,7 @@ const Edit_Page = () => {
         </View>
     );
 };
-export default Edit_Page;
+export default EditSer_Page;
 
 const styles = StyleSheet.create({
     mainBody: {

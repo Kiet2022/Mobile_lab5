@@ -10,14 +10,13 @@ import {
     TouchableOpacity,
     KeyboardAvoidingView,
 } from 'react-native';
-import { Add } from './api/agent';
 
-const Add_Page = () => {
+const AddSer_Page = () => {
     const [name, setName] = useState('');
     const [price, setPrice] = useState('');
     const [errortext, setErrortext] = useState('');
 
-    const handleSubmitPress = () => {
+    const handleSubmitPress = async () => {
         setErrortext('');
         if (!name) {
             alert('Please fill name');
@@ -26,14 +25,30 @@ const Add_Page = () => {
             alert('Please fill price');
             return;
         } else {
-            Add(name, price);
+        const value = await AsyncStorage.getItem('token');
+        console.log(value);
+        await fetch('https://kami-backend-5rs0.onrender.com/services', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${value}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: name,
+                price: price,
+            }),
+        })
+            .then(res => res.json())
+            .then( async data => {
+                 console.log(data)
+                 await navigation.navigate('Homescreen')
+            })
+            .catch(error => { console.log(error) });
+        Alert.alert('Add successfully');
         }
-        Alert.alert("Add Succesfull!!!");
-
     }
 
     return (
-
         <View>
             <View style={{flex:2}}>
                 <KeyboardAvoidingView enabled>
@@ -75,7 +90,7 @@ const Add_Page = () => {
         </View>
     );
 };
-export default Add_Page;
+export default AddSer_Page;
 
 const styles = StyleSheet.create({
     mainBody: {
