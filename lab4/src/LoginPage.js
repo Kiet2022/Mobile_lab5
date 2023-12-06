@@ -9,17 +9,17 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const Login_Page = () => {
+const Login_Page = ({navigation}) => {
     const [phone, setPhone] = useState('');
     const [pass, setPass] = useState('');
     const [errortext, setErrortext] = useState('');
 
     const handleSubmitPress = async () => {
         setErrortext('');
-        if (!name) {
-            alert('Please fill name');
+        if (!phone) {
+            alert('Please fill email or phone');
             return;
-        } else if (!price) {
+        } else if (!pass) {
             alert('Please fill price');
             return;
         } else {
@@ -81,7 +81,9 @@ const Login_Page = () => {
                     <TouchableOpacity
                         style={styles.buttonStyle}
                         activeOpacity={0.5}
-                        onPress={handleSubmitPress}>
+                        onPress={handleSubmitPress}
+                        /*onPress={() => navigation.navigate('HomeScreen')}*/
+                        >
                         <Text style={styles.buttonTextStyle}>LOGIN</Text>
                     </TouchableOpacity>
 

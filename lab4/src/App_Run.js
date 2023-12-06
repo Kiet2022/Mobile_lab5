@@ -4,6 +4,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 
+import {
+    Text
+} from 'react-native';
 
 import Login_Page from './LoginPage';
 import AddSer_Page from './AddPage';
