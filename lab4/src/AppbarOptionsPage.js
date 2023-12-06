@@ -1,35 +1,45 @@
 import 'react-native-gesture-handler';
 import React from "react";
 
-import {  Text, View, TouchableOpacity, Alert, StyleSheet } from 'react-native'
+import { useRoute } from "@react-navigation/native";
+import { Text, View, TouchableOpacity, Alert, StyleSheet } from 'react-native'
+import styles from './Style';
+import { Appbar } from 'react-native-paper';
 
-
-
-const AppbarOption_Page = ({navigation}) => {
+const AppbarOption_Page = ({ navigation }) => {
     const route = useRoute();
     const { _id } = route.params;
 
-    const handleDelete = () => {
-        Alert.alert("Delete Succesfull!!!");
+    const handleDelete = async () => {
+        await fetch(`https://kami-backend-5rs0.onrender.com/services/${_id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('NetWork response was not ok')
+                }
+                Alert.alert("Delete Succesfull!!!");
+            })
+            .catch((error) => {
+                console.error('Error fetching data:', error);
+            }).finally(() => navigation.navigate('Home'));
     }
     return (
         <View>
-            <TouchableOpacity  onPress={() => navigation.navigate('UpdateService', { _id: _id })}>
-                <Text >Edit</Text>
+            <Appbar.Header>
+                <Appbar.Content title={' <   '} onPress={() => navigation.goBack()} />
+            </Appbar.Header>
+            <TouchableOpacity onPress={() => navigation.navigate('UpdateService', { _id: _id })}>
+                <Text style={styles.subtitle}>Edit</Text>
             </TouchableOpacity>
-            <TouchableOpacity  onPress={handleDelete}>
-                <Text >Delete</Text>
+            <TouchableOpacity onPress={handleDelete}>
+                <Text style={styles.subtitle}>Delete</Text>
             </TouchableOpacity>
         </View>
     );
 };
 export default AppbarOption_Page;
 
-const styles = StyleSheet.create({
-    fab: {
-      position: 'absolute',
-      margin: 16,
-      right: 0,
-      bottom: 0,
-    },
-})

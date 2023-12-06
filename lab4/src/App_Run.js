@@ -28,6 +28,9 @@ function HomeScreens() {
             activeColor="#e91e63"
             labelStyle={{ fontSize: 12 }}
             style={{ backgroundColor: 'tomato' }}
+            screenOptions={{
+                headerShown: false
+            }}
         >
             <Stack.Screen
                 name="Home"
@@ -52,6 +55,9 @@ function AppbarOptionScreen() {
             activeColor="#e91e63"
             labelStyle={{ fontSize: 12 }}
             style={{ backgroundColor: 'tomato' }}
+            screenOptions={{
+                headerShown: false
+            }}
         >
             <Stack.Screen
                 name='AppbarOption'
@@ -72,6 +78,9 @@ function DetailScreen() {
             activeColor="#e91e63"
             labelStyle={{ fontSize: 12 }}
             style={{ backgroundColor: 'tomato' }}
+            screenOptions={{
+                headerShown: false
+            }}
         >
             <Stack.Screen
                 name='Detail'
@@ -81,7 +90,6 @@ function DetailScreen() {
                 name="AppbarScreen"
                 component={AppbarOptionScreen}
             />
-
         </Stack.Navigator>
     )
 }
@@ -94,6 +102,7 @@ function MyTabs() {
         <Tab.Navigator
             initialRouteName='HomeScreen_Run'
             barStyle={{ backgroundColor: "blue" }}
+
         >
             <Tab.Screen name="Home"
                 component={Home_Page}

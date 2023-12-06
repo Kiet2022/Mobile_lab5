@@ -6,9 +6,14 @@ import {
     Text,
     TouchableOpacity,
     KeyboardAvoidingView,
+    Alert,
 } from 'react-native';
+import styles from './Style';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Appbar } from 'react-native-paper';
 
-const AddSer_Page = () => {
+
+const AddSer_Page = ({navigation}) => {
     const [name, setName] = useState('');
     const [price, setPrice] = useState('');
     const [errortext, setErrortext] = useState('');
@@ -38,15 +43,18 @@ const AddSer_Page = () => {
             .then(res => res.json())
             .then( async data => {
                  console.log(data)
-                 await navigation.navigate('Homescreen')
+                 await navigation.goBack();
             })
             .catch(error => { console.log(error) });
-        Alert.alert('Add successfully');
+            Alert.alert('Add successfully');
         }
     }
 
     return (
         <View>
+            <Appbar.Header>
+                <Appbar.Content title={' <   '} onPress={() => navigation.goBack()} />
+            </Appbar.Header>
             <View style={{flex:2}}>
                 <KeyboardAvoidingView enabled>
                     <View style={styles.SectionStyle}>
@@ -82,66 +90,15 @@ const AddSer_Page = () => {
                         onPress={handleSubmitPress}>
                         <Text style={styles.buttonTextStyle}>ADD</Text>
                     </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.buttonStyle}
+                        activeOpacity={0.5}
+                        onPress={() => navigation.goBack()}>
+                        <Text style={styles.buttonTextStyle}>CANCEL</Text>
+                    </TouchableOpacity>
                 </KeyboardAvoidingView>
             </View>
         </View>
     );
 };
 export default AddSer_Page;
-
-const styles = StyleSheet.create({
-    mainBody: {
-        flex: 1,
-        justifyContent: 'center',
-        backgroundColor: '#307ecc',
-        alignContent: 'center',
-    },
-    SectionStyle: {
-        flexDirection: 'row',
-        height: 40,
-        marginTop: 20,
-        marginLeft: 35,
-        marginRight: 35,
-        margin: 10,
-    },
-    buttonStyle: {
-        backgroundColor: '#7DE24E',
-        borderWidth: 0,
-        color: '#FFFFFF',
-        borderColor: '#7DE24E',
-        height: 40,
-        alignItems: 'center',
-        borderRadius: 30,
-        marginLeft: 35,
-        marginRight: 35,
-        marginTop: 20,
-        marginBottom: 25,
-    },
-    buttonTextStyle: {
-        color: '#FFFFFF',
-        paddingVertical: 10,
-        fontSize: 16,
-    },
-    inputStyle: {
-        flex: 1,
-        color: 'white',
-        paddingLeft: 15,
-        paddingRight: 15,
-        borderWidth: 1,
-        borderRadius: 30,
-        borderColor: '#dadae8',
-    },
-    registerTextStyle: {
-        color: '#FFFFFF',
-        textAlign: 'center',
-        fontWeight: 'bold',
-        fontSize: 14,
-        alignSelf: 'center',
-        padding: 10,
-    },
-    errorTextStyle: {
-        color: 'red',
-        textAlign: 'center',
-        fontSize: 14,
-    },
-});
