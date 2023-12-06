@@ -1,9 +1,10 @@
+import 'react-native-gesture-handler';
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import 'react-native-gesture-handler';
-// import { MaterialCommunityIcons } from '@expo/vector-icons';
+
+
 import Login_Page from './LoginPage';
 import AddSer_Page from './AddPage';
 import DetailSer_Page from './DetailPage';
@@ -41,7 +42,7 @@ function HomeScreens() {
     )
 }
 
-function AppbarOptionScreen(){
+function AppbarOptionScreen() {
     return (
         <Stack.Navigator
             initialRouteName='AppbarOptionScreen'
@@ -61,7 +62,7 @@ function AppbarOptionScreen(){
         </Stack.Navigator>
     )
 }
-function DetailScreen(){
+function DetailScreen() {
     return (
         <Stack.Navigator
             initialRouteName='DetailScreen'
@@ -123,25 +124,27 @@ function MyTabs() {
 }
 function App_Run() {
     return (
-        <Stack.Navigator
-            initialRouteName="AppScreen"
-            activeColor="#e91e63"
-            labelStyle={{ fontSize: 12 }}
-            style={{ backgroundColor: 'tomato' }}
-            screenOptions={{
-                headerShown: false
-            }}
-        >
-            <Stack.Screen
-                name='LoginScreen'
-                component={Login_Page}
-            />
-            <Stack.Screen
-                name="HomeScreen"
-                component={HomeScreens}
-            />
-        </Stack.Navigator>
+        <NavigationContainer>
+            <Stack.Navigator
+                initialRouteName="AppScreen"
+                activeColor="#e91e63"
+                labelStyle={{ fontSize: 12 }}
+                style={{ backgroundColor: 'tomato' }}
+                screenOptions={{
+                    headerShown: false
+                }}
+            >
+                <Stack.Screen
+                    name='LoginScreen'
+                    component={Login_Page}
+                />
+                <Stack.Screen
+                    name="HomeScreen"
+                    component={HomeScreens}
+                />
+            </Stack.Navigator>
+        </NavigationContainer>
     )
-} 
+}
 
 export default App_Run;

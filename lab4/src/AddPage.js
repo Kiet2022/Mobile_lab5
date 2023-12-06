@@ -4,9 +4,6 @@ import {
     TextInput,
     View,
     Text,
-    ScrollView,
-    Image,
-    Keyboard,
     TouchableOpacity,
     KeyboardAvoidingView,
 } from 'react-native';

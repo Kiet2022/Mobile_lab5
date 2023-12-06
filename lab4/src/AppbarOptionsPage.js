@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import React from "react";
 
-import {  Text, View, TouchableOpacity, Alert } from 'react-native'
+import {  Text, View, TouchableOpacity, Alert, StyleSheet } from 'react-native'
 
 
 
