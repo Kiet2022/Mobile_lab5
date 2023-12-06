@@ -31,14 +31,10 @@ const DetailSer_Page = ({ navigation }) => {
             })
             .then((d) => {
                 setData(d)
-                console.log("d: ", d)                
-                /*                 d.map((item) => {
-                                    console.log(item);
-                                }) */
+                console.log("d: ", d)              
             })
             .catch((error) => {
-                console.error('Error fetching data:', error);
-              
+                console.error('Error fetching data:', error);              
             });
     };
 
@@ -50,7 +46,7 @@ const DetailSer_Page = ({ navigation }) => {
         <View >
             <Appbar.Header>
                 <Appbar.Content title={' <   '} onPress={() => navigation.goBack()} />
-                <Appbar.Content style={styles.itemValue} title={'...'} onPress={() => navigation.navigate('AppbarScreen', {screen: 'AppbarOption', params: {_id: _id}})} />
+                <Appbar.Content style={styles.itemValue} title={'...'} onPress={() => navigation.navigate('AppbarScreen', {screen: 'AppbarOption', params: {_id: _id, nameSer: data.name, priceSer: data.price}})} />
             </Appbar.Header>
             <View >
                 <View style={{ flexDirection: 'row', height: 50 , paddingTop:16}}>

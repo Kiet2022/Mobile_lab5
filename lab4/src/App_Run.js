@@ -104,7 +104,8 @@ function MyTabs() {
             barStyle={{ backgroundColor: "blue" }}
 
         >
-            <Tab.Screen name="Home"
+            <Tab.Screen 
+                name="Home"
                 component={Home_Page}
                 options={{
                     tabBarIcon: 'home',

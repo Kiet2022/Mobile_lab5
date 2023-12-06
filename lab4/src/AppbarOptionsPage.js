@@ -8,7 +8,7 @@ import { Appbar } from 'react-native-paper';
 
 const AppbarOption_Page = ({ navigation }) => {
     const route = useRoute();
-    const { _id } = route.params;
+    const { _id, nameSer, priceSer } = route.params;
 
     const handleDelete = async () => {
         await fetch(`https://kami-backend-5rs0.onrender.com/services/${_id}`, {
@@ -32,7 +32,7 @@ const AppbarOption_Page = ({ navigation }) => {
             <Appbar.Header>
                 <Appbar.Content title={' <   '} onPress={() => navigation.goBack()} />
             </Appbar.Header>
-            <TouchableOpacity onPress={() => navigation.navigate('UpdateService', { _id: _id })}>
+            <TouchableOpacity onPress={() => navigation.navigate('UpdateService', { _id: _id, nameSer: nameSer, priceSer: priceSer })}>
                 <Text style={styles.subtitle}>Edit</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={handleDelete}>

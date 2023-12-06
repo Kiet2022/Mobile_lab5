@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import React, { useEffect, useState } from "react";
 import { SafeAreaView, Text, View, FlatList, TouchableOpacity } from 'react-native'
-import { FAB, PaperProvider } from "react-native-paper";
+import { FAB } from "react-native-paper";
 import styles from './Style';
 
 const Home_Page = ({ navigation }) => {
@@ -35,8 +35,7 @@ const Home_Page = ({ navigation }) => {
             </TouchableOpacity>
             </View>
     );
-    return (
-        
+    return (        
         <SafeAreaView style={styles.container_main}>
             <View style={styles.container_head}><Text style={styles.title}>Kami</Text></View>
 

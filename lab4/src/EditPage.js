@@ -19,7 +19,7 @@ const EditSer_Page = ({navigation}) => {
 
 
     const route = useRoute();
-    const { _id } = route.params;
+    const { _id, nameSer, priceSer } = route.params;
 
 
     const handleSubmitPress = async () => {
@@ -75,7 +75,7 @@ const EditSer_Page = ({navigation}) => {
                             onChangeText={name =>
                                 setName(name)
                             }
-                            placeholder="Enter service name"
+                            value={nameSer}
                             onSubmitEditing={() =>
                                 passwordInputRef.current &&
                                 passwordInputRef.current.focus()
@@ -88,7 +88,7 @@ const EditSer_Page = ({navigation}) => {
                             onChangeText={(price) =>
                                 setPrice(price)
                             }
-                            placeholder="Enter price"
+                            value={priceSer}
                         />
                     </View>
                     {errortext != '' ? (
