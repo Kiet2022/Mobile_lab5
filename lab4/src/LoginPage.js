@@ -82,8 +82,8 @@ const Login_Page = ({navigation}) => {
                     <TouchableOpacity
                         style={styles.buttonStyle}
                         activeOpacity={0.5}
-                        //onPress={handleSubmitPress}
-                        onPress={() => navigation.navigate('HomeScreen')}
+                        onPress={handleSubmitPress}
+                        //onPress={() => navigation.navigate('HomeScreen')}
                         >
                         <Text style={styles.buttonTextStyle}>LOGIN</Text>
                     </TouchableOpacity>
